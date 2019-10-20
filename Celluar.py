@@ -2,13 +2,14 @@ import numpy as np
 from SimpleSTL import SimpleSTL
 
 class Celluar():
-    def __init__(self, n, size, field):
+    def __init__(self, n, scale, height, field):
         self.n = n
-        self.size = size
+        self.height = height
+        self.scale = scale
         self.level = 0
         self.z = 0.0
         self.field = field
-        self.STL_writer = SimpleSTL(size=self.size)
+        self.STL_writer = SimpleSTL(scale=self.scale)
 
     def print_field(self):
         for i in range(1, self.n+1):
@@ -35,11 +36,11 @@ class Celluar():
         for i in range(self.n):
             for j in range(self.n):
                 if self.field[i][j]:
-                    self.STL_writer.draw_cube(i*self.size, j*self.size, self.z)
-        self.z += self.size
+                    self.STL_writer.draw_cube(i*self.scale, j*self.scale, self.z)
+        self.z += self.scale
         self.level += 1
         self.field = self.update()
-        if(self.level < self.n * 2):
+        if(self.level <= self.height):
             self.run()
 
     def close(self):

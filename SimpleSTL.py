@@ -2,8 +2,8 @@ import struct
 import numpy as np
 
 class SimpleSTL():
-    def __init__(self, size=0):
-        self.size = size
+    def __init__(self, scale=0):
+        self.scale = scale
         self.n_facets = 0
         self.file = open("test.stl", mode="wb")
         self.file.write(bytes(80))
@@ -21,7 +21,7 @@ class SimpleSTL():
         self.draw_facet(p4, p3, p2)
 
     def draw_cube(self, x, y, z):
-        s = self.size
+        s = self.scale
         self.draw_square([x,y,z],[x,y+s,z],[x,y,z+s],[x,y+s,z+s])
         self.draw_square([x,y,z],[x,y+s,z],[x+s,y,z],[x+s,y+s,z])
         self.draw_square([x,y,z],[x+s,y,z],[x,y,z+s],[x+s,y,z+s])
