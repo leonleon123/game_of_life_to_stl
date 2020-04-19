@@ -5,7 +5,7 @@ app_help = """Usage: python main.py <n> <height>\nwhere:
     -height     number of generations, number of layers in finished 3d model"""
 
 if __name__=="__main__":
-    if sys.argv[1] == "-help" or sys.argv[1] == "/?":
+    if len(sys.argv) < 3 or sys.argv[1] == "-help" or sys.argv[1] == "/?":
         print(app_help)
         quit()
     app = App(int(sys.argv[1]), int(sys.argv[2]), 5.0)
